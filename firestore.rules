@@ -1,0 +1,11 @@
+rules_version = '2';
+// Regras do Firestore do painel de leads (Firebase > Firestore Database > Regras: cole tudo e clique em Publicar).
+// O painel grava pelo servidor, com a conta de serviço, que não passa por estas regras.
+// Por isso o banco fica fechado para qualquer acesso de fora (navegador, app, chave da web).
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{documento=**} {
+      allow read, write: if false;
+    }
+  }
+}
